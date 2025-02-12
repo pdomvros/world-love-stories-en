@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Stories of World History</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: pink; /* Pink background */
+        }
+        h1 {
+            font-size: 16px;
+        }
+        h2 {
+            font-size: 28px;
+        }
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .help-content {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        @media print {
+            .help-content {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Created by: Panagiotis Domvros 2025 (CC BY-NC)</h1>
+    <h2>Love Stories of World History</h2>
+    <p>Click the "Select Story" button to be given a random love story from World History along with the characteristics of its protagonists. Click the "Print" button to create a PDF file with the necessary information. Finally, click the "My View" button and write your opinion about the love story you were given.</p>
+    
+     <div class="emoji">❤️🧡💛💚💙💜💖💘💝💟</div> <!-- Heart emoticons -->
+    <div class="emoji">👩‍❤️‍👨👩‍❤️‍💋‍👨👨‍❤️‍👨👩‍❤️‍👩💏👫</div> <!-- Cupid emoticons -->
+    
+    <button class="button" onclick="selectStory()">Select Story</button>
+    <button class="button" onclick="printStory()">Print</button>
+    <button class="button" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdm0oPDyid-u5vSQJDi_4DuNY8gFmD9PNGm1b3sxl5acnABeA/viewform?usp=dialog', '_blank')">My Opinion</button>
+    <button class="button" onclick="toggleHelp()">Help</button>
+
+    <div id="story"></div>
+
+    <div id="helpContent" class="help-content">
+        <h2>Phrases for your opinion:</h2>
+        <ul>
+            <li>In my opinion, the story of… is a timeless example of true love.</li>
+            <li>I believe that the relationship between … and … shows how love can change history.</li>
+            <li>Their love was so strong that it overcame the social barriers of their time.</li>
+            <li>Although their story is romantic, I think their choices were reckless.</li>
+            <li>The decision of … to abandon everything for … is impressive but also controversial.</li>
+            <li>I am not sure if their love was genuine or if it was influenced by their political ambitions.</li>
+            <li>The tragic ending of their story proves that love is not always happy.</li>
+            <li>I believe that … was more devoted to the relationship, while … was influenced by other factors.</li>
+            <li>Their story shows how difficult it was to be in love in that era.</li>
+            <li>If they lived today, I think … and … would not face so many difficulties.</li>
+            <li>The way … sacrificed … for their love deeply moves me.</li>
+            <li>Although they are considered romantic heroes, I believe their actions had negative consequences.</li>
+            <li>Their relationship seems more like a story of passion than a stable love.</li>
+            <li>… should have chosen personal happiness over …</li>
+            <li>Their love was doomed from the start due to social conditions.</li>
+            <li>The attitude of … towards … shows how love can be a source of strength but also weakness.</li>
+            <li>Can we compare this story to modern romantic relationships?</li>
+            <li>Personally, I think this story is more of a myth than a real love.</li>
+            <li>The way their love is described reflects the culture and values of their time.</li>
+        </ul>
+    </div>
+
+    <script>
+        const stories = [
+            {
+                title: "Cleopatra and Mark Antony",
+                content: "The queen of Egypt and the Roman general fell madly in love, uniting their fates in politics and war. When Octavian attacked Egypt, their defeat was inevitable. Antony committed suicide believing Cleopatra was dead, and she followed him shortly after.",
+                characters: {
+                    "Mark Antony": ["brave", "charismatic", "impulsive", "strategic", "passionate"],
+                    "Cleopatra": ["intelligent", "magnetic", "ambitious", "charming", "calculating"]
+                }
+            },
+            {
+                title: "Romeo and Juliet",
+                content: "The most famous tragic love in literature is based on real family feuds in Italy. Romeo and Juliet, young lovers from rival families, married in secret. Misunderstandings and hatred led to their deaths, leaving their families to mourn their loss.",
+                characters: {
+                    "Romeo": ["romantic", "spontaneous", "impulsive", "brave", "devoted"],
+                    "Juliet": ["innocent", "determined", "passionate", "tender", "sensitive"]
+                }
+            },
+            {
+                title: "Paris and Helen",
+                content: "The abduction of Helen, queen of Sparta, by the prince of Troy, Paris, was the catalyst for the ten-year Trojan War. Their love cost the lives of thousands of men, while Helen herself returned to Sparta after the fall of Troy, leaving her story immortal.",
+                characters: {
+                    "Paris": ["handsome", "naive", "privileged", "frivolous", "charming"],
+                    "Helen": ["stunning", "mysterious", "controversial", "passive", "desirable"]
+                }
+            },
+            {
+                title: "Napoleon and Josephine",
+                content: "Napoleon loved Josephine passionately, but their love was tested by his political ambitions and her inability to bear him an heir. Despite his deep love, he divorced her because she could not give him a successor. They remained connected forever, with Napoleon whispering her name before he died.",
+                characters: {
+                    "Napoleon Bonaparte": ["ambitious", "charismatic", "domineering", "intelligent", "impatient"],
+                    "Josephine": ["elegant", "charming", "manipulative", "independent", "sensual"]
+                }
+            },
+            {
+                title: "Abelard and Heloise",
+                content: "The philosopher Peter Abelard and his student, Heloise, lived a stormy love in the 12th century. Their relationship led to a secret marriage, but Heloise's family took revenge by castrating Abelard. The two spent the rest of their lives in monasteries, communicating only through letters.",
+                characters: {
+                    "Peter Abelard": ["intelligent", "ambitious", "defiant", "devoted", "thoughtful"],
+                    "Heloise": ["educated", "free-spirited", "passionate", "bold", "emotional"]
+                }
+            },
+            {
+                title: "Pericles and Aspasia",
+                content: "Pericles, the leader of Athens, adored Aspasia, an intellectual courtesan who provoked reactions in the city. She was his companion in everything, even participating in shaping Athenian politics. Their relationship was questioned by his opponents, but Pericles defended her until the end.",
+                characters: {
+                    "Pericles": ["leader", "visionary", "wise", "methodical", "brave"],
+                    "Aspasia": ["intelligent", "cultured", "dynamic", "independent", "progressive"]
+                }
+            },
+            {
+                title: "Edward VIII and Wallis Simpson",
+                content: "The king of England abdicated the throne to marry Wallis Simpson, a divorced American. Their love caused a constitutional crisis, as the English monarchy did not accept such a marriage. Edward chose love over power, spending the rest of his life in exile.",
+                characters: {
+                    "Edward VIII": ["romantic", "decisive", "weak", "emotional", "idealistic"],
+                    "Wallis Simpson": ["elegant", "socialite", "manipulative", "charming", "independent"]
+                }
+            },
+            {
+                title: "Lord Byron and Teresa Guiccioli",
+                content: "The fiery poet met the young Italian when she was already married. Despite social reactions, their love flourished. Byron left her to fight for Greek independence, leaving her to mourn his loss when he died in Missolonghi.",
+                characters: {
+                    "Lord Byron": ["passionate", "rebellious", "charismatic", "melancholic", "unruly"],
+                    "Teresa Guiccioli": ["youthful", "sensitive", "devoted", "tender", "romantic"]
+                }
+            },
+            {
+                title: "Shah Jahan and Mumtaz Mahal",
+                content: "The Indian emperor deeply loved his wife Mumtaz, who died giving birth to their 14th child. In a gesture of eternal love, he dedicated the Taj Mahal to her, one of the most impressive monuments in the world. It is said that after her death, he aged prematurely from grief.",
+                characters: {
+                    "Shah Jahan": ["majestic", "passionate", "devoted", "mournful", "powerful"],
+                    "Mumtaz Mahal": ["tender", "kind-hearted", "fertile", "modest", "beloved"]
+                }
+            },
+            {
+                title: "Tristan and Isolde",
+                content: "The knight Tristan and Isolde, betrothed to the king of Cornwall, fell in love due to a magic potion. Their secret love condemned them to death. They died separately, but tradition says their graves were united by ivy, symbolizing their eternal love.",
+                characters: {
+                    "Tristan": ["brave", "noble", "devoted", "fated", "tragic"],
+                    "Isolde": ["passionate", "bold", "melancholic", "romantic", "determined"]
+                }
+            },
+            {
+                title: "John and Abigail Adams",
+                content: "The second President of the United States and his wife shared a deep love and a strong intellectual relationship. Through hundreds of letters, Abigail advised her husband on politics, making her one of the first influential women in American history.",
+                characters: {
+                    "John Adams": ["wise", "loyal", "methodical", "logical", "affectionate"],
+                    "Abigail Adams": ["dynamic", "cultured", "supportive", "intelligent", "insightful"]
+                }
+            },
+            {
+                title: "Victor Hugo and Juliette Drouet",
+                content: "The famous writer and his mistress had an intense relationship that lasted 50 years. Juliette abandoned her career as an actress to devote herself to Hugo, who sent her daily letters. They remained together until the end of their lives.",
+                characters: {
+                    "Victor Hugo": ["talented", "passionate", "contradictory", "devoted", "moody"],
+                    "Juliette Drouet": ["faithful", "romantic", "patient", "calm", "devoted"]
+                }
+            },
+            {
+                title: "Franklin and Eleanor Roosevelt",
+                content: "Although their relationship began with passion, politics and personal choices made it complicated. Eleanor became one of the most dynamic First Ladies, while Franklin had extramarital affairs. They remained partners, influencing modern American history.",
+                characters: {
+                    "Franklin Roosevelt": ["charismatic", "intelligent", "ambitious", "skilled", "indecisive"],
+                    "Eleanor Roosevelt": ["dynamic", "independent", "insightful", "humanitarian", "resilient"]
+                }
+            },
+            {
+                title: "Diego Rivera and Frida Kahlo",
+                content: "Their love was full of passion, betrayals, and art. Rivera, known for his infidelities, and Frida, despite her physical suffering, loved each other deeply. Their fights and separations did not prevent them from staying together until Frida's death.",
+                characters: {
+                    "Diego Rivera": ["explosive", "talented", "unfaithful", "charming", "unrestrained"],
+                    "Frida Kahlo": ["sensitive", "creative", "passionate", "tormented", "free-spirited"]
+                }
+            },
+            {
+                title: "Caesar and Servilia",
+                content: "Servilia, the mother of Brutus, was Julius Caesar's greatest love. It is said that Caesar gave her expensive gifts and influenced her political career. Their bond was so strong that many suspected Brutus was Caesar's son.",
+                characters: {
+                    "Julius Caesar": ["strategic", "insightful", "ambitious", "attractive", "ruthless"],
+                    "Servilia": ["intelligent", "mysterious", "manipulative", "cunning", "determined"]
+                }
+            }
+        ];
+
+        function selectStory() {
+            const randomStory = stories[Math.floor(Math.random() * stories.length)];
+            const storyDiv = document.getElementById('story');
+            storyDiv.innerHTML = `
+                <h2>${randomStory.title}</h2>
+                <p>${randomStory.content}</p>
+                <h3>Characteristics of the protagonists:</h3>
+                <ul>
+                    ${Object.entries(randomStory.characters).map(([name, traits]) => `
+                        <li><strong>${name}:</strong> ${traits.join(', ')}</li>
+                    `).join('')}
+                </ul>
+            `;
+        }
+
+        function toggleHelp() {
+            const helpContent = document.getElementById('helpContent');
+            helpContent.style.display = helpContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function printStory() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
